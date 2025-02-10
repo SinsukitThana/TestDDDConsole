@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "DBCONNECTION": "Server=LAPTOP-955J5018\\SQLEXPRESS;Database=TESTDDD;Integrated Security=True;TrustServerCertificate=True;"
+  }
+}
