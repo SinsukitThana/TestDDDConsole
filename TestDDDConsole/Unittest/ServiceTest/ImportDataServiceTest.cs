@@ -34,8 +34,11 @@ namespace TestDDDConsole.Unittest.ServiceTest
             string fullPath = Path.Combine(basePath ?? "", relativePath);
             string base64 = importDataService.GetBase64FromExcel(fullPath);
 
+            // TOO wide
             Assert.NotNull(base64);
             Assert.NotEmpty(base64);
+
+            // Assert.Equals("xxxxxx", base64);
         }
         [Fact]
         public async Task ImportDataService_GetRows_Test()
@@ -47,15 +50,16 @@ namespace TestDDDConsole.Unittest.ServiceTest
             var rowCount = rows.Count;
             document.Dispose();
 
+            // TOO wide
             Assert.NotNull(rows);
             Assert.NotEqual(0, rowCount);
+
+            // Assert.Equals(5, rowCount);
         }
 
         [Fact]
-        public async Task ValidateExcelData_Test()
+        public async Task ValidateExcelData_Pass_Test()
         {
-            try
-            {
                 var mockRepo = new Mock<IDatabaseInformation>();
                 string relativePath = @"File\FileImport.xlsx";
                 string fullPath = Path.Combine(basePath ?? "", relativePath);
@@ -87,15 +91,23 @@ namespace TestDDDConsole.Unittest.ServiceTest
                 List<TableAndColumn> lstTableAndColumn = await mockRepo.Object.GetTableAndColumns();
                 string tableName = importDataService.GetCellValue(workbookPart, headCells?[1]) ?? "";
                 var getTable = lstTableAndColumn.Where(x => x.Table == tableName).FirstOrDefault();
-                importDataService.ValidateExcelData(tableName, rows, mockRepo.Object, workbookPart, getTable);
-                Assert.True(true);
-            }
-            catch (Exception)
-            {
-                Assert.True(false);
-            }
 
+                var rslt = importDataService.ValidateExcelData(tableName, rows, mockRepo.Object, workbookPart, getTable);
+
+                // Assert.Equals(xxx, rslt);
         }
+
+        // [Fact]
+        // public async Task ValidateExcelData_Failed_Test() {
+        //     // ...
+
+        //     Assert.Throws<ImportDataServiceException>(() => {
+        //         var rslt = importDataService.ValidateExcelData(tableName, rows, mockRepo.Object, workbookPart, getTable);
+        //     });
+
+        // }
+
+
         [Fact]
         public async Task SetRowResult_Test()
         {
@@ -133,6 +145,8 @@ namespace TestDDDConsole.Unittest.ServiceTest
                 Row row = rows[2];
                 var cells = row.Elements<Cell>().ToList();
                 RowObject rowObject = importDataService.SetRowResult(cells, workbookPart, columns, mockResult);
+                
+                // TOO wide
                 Assert.NotNull(rowObject);
             }
             catch (Exception)
