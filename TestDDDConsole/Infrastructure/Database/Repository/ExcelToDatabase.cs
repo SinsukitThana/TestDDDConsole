@@ -113,6 +113,7 @@ namespace TestDDDConsole.Infrastructure.Database.Repository
 
             return query;
         }
+        
         public string UpdateQuery(RowObject row, string tableName)
         {
             LstTypeWithoutSingleQuot getLstTypeWithoutSingleQuot = new LstTypeWithoutSingleQuot();
@@ -146,6 +147,7 @@ namespace TestDDDConsole.Infrastructure.Database.Repository
 
             return query;
         }
+
         public string DeleteQuery(RowObject row, string tableName)
         {
             LstTypeWithoutSingleQuot getLstTypeWithoutSingleQuot = new LstTypeWithoutSingleQuot();

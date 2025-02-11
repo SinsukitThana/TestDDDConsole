@@ -30,6 +30,7 @@ string? basePath = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?
 string relativePath = @"File\FileTest\FileImportPerson.xlsx";
 string fullPath = Path.Combine(basePath??"", relativePath);
 
+// This should not be here, but in the Usecase instead
 string base64 = importDataService.GetBase64FromExcel(fullPath);
 
 IDatabaseSystem repositoryDataBaseSystem = new DatabaseSystem(context);
